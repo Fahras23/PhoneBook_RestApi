@@ -46,9 +46,9 @@ async def add_contact(
         )
     if "@" not in contact.email:
         raise HTTPException(status_code=400, detail="Inserted value is not an email")
-    if len(contact.first_name) > 0:
+    if len(contact.first_name) < 0:
         raise HTTPException(status_code=400, detail="first_name cant be null")
-    if len(contact.last_name) > 0:
+    if len(contact.last_name) < 0:
         raise HTTPException(status_code=400, detail="last_name cant be null")
     try:
         db_contact = ModelContact(
@@ -98,9 +98,9 @@ async def update_contact(
         )
     if "@" not in contact.email:
         raise HTTPException(status_code=400, detail="Inserted value is not an email")
-    if len(contact.first_name) > 0:
+    if len(contact.first_name) < 0:
         raise HTTPException(status_code=400, detail="first_name cant be null")
-    if len(contact.last_name) > 0:
+    if len(contact.last_name) < 0:
         raise HTTPException(status_code=400, detail="last_name cant be null")
     db_contact = (
         db.session.query(ModelContact).filter(ModelContact.id == contact_id).first()
