@@ -13,6 +13,13 @@ DB_URL = *****
 ```
 pip install -r requirements.txt
 ```
+4. Start uvicorn server
+```
+uvicorn main:app --reload
+```
+5. All method available in api are in URL after starting server
+[API DOCS SITE](http://127.0.0.1:8000/docs#/)
+
 
 ## App features
 ### Main Page
@@ -27,10 +34,11 @@ methods:
 - check (used in all methods to validate arguments)
 
 ### Authentication features
-method:
-- register new user
+methods:
+- register (new user)
+features:
 - authenticate existing user
 - hashing and unhashing password for safty
 
-### Code formated with black and validated with pylint and flake8
+Code formated with black and validated with pylint and flake8
 
