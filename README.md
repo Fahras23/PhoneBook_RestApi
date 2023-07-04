@@ -4,16 +4,31 @@
 1. Clone repository
 ```
 git clone https://github.com/Fahras23/PhoneBook_RestApi.git
+cd PhoneBook_RestApi
 ```
-2. Add .env file to home directory that contains database url
+2. Create virtual enviroment
+```
+pip install virtualenv
+virtualenv venv
+```
+3. Activate virtual enviroment
+For linux:
+```
+source venv/bin/activate
+```
+For windows:
+```
+venv/Scripts/activate
+```
+4. Add .env file to home directory that contains database url
 ```
 DB_URL = *****
 ```
-3. Install requirements
+5. Install requirements
 ```
 pip install -r requirements.txt
 ```
-4. Start uvicorn server
+6. Start uvicorn server
 ```
 uvicorn main:app --reload
 ```
