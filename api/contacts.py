@@ -91,7 +91,7 @@ async def update_contact(
     - email must be contain @
     - first_name and last_name cannot be null
     """
-    # checks used to check value of specific parametrs in request
+    # checks used to check value of specific arguments in request
     if len(str(contact.phone_number)) != 9:
         raise HTTPException(
             status_code=400, detail="Phone number must be number with 9 digits"
@@ -105,7 +105,7 @@ async def update_contact(
     db_contact = (
         db.session.query(ModelContact).filter(ModelContact.id == contact_id).first()
     )
-    # overrite existing value from returned value
+    # overrite existing values in database with that from request
     if db_contact:
         db_contact.first_name = contact.first_name
         db_contact.last_name = contact.last_name
