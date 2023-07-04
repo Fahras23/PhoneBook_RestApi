@@ -78,6 +78,7 @@ async def remove_contact(contact_id: int, authenticated: bool = Depends(authenti
         db.session.delete(db_contact)
         db.session.commit()
         return db_contact
+    # if contact in database not found raise an error
     raise HTTPException(status_code=404, detail="Item not found")
 
 

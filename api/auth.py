@@ -43,7 +43,7 @@ def authenticate(credentials: HTTPBasicCredentials = Depends(security)):
 @router.post("/register/")
 async def register_user(user: SchemaCredintials):
     """Add user to database"""
-    # checks for variables in credintials
+    # checks variables in credintials
     if len(user.password) < 8:
         HTTPException(
             status_code=400,
