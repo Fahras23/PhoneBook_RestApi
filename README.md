@@ -35,8 +35,13 @@ uvicorn main:app --reload
 7. All method available in api are in URL after starting server
 - [API](http://127.0.0.1:8000/)
 - [API DOCS SITE](http://127.0.0.1:8000/docs#/)
-
-
+8. For sample credentials use:
+```
+{
+  "username": "test",
+  "password": "testtest"
+}
+```
 ## App features
 ### Main Page
 listed all methods available in api
@@ -57,4 +62,5 @@ features:
 - hashing and unhashing password for safty
 
 Code formated with black and validated with pylint and flake8
+
 
