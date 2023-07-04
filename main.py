@@ -1,56 +1,37 @@
-from fastapi import FastAPI
-from fastapi_sqlalchemy import DBSessionMiddleware, db
-
-from schemas import Contact as SchemaContact
-from models import Contact as ModelContact
-
-import uuid
+"""Phone Book API"""
 import os
+from fastapi import FastAPI
+from fastapi_sqlalchemy import DBSessionMiddleware
+
+
 from dotenv import load_dotenv
 
-load_dotenv('.env')
+from api import contacts, auth
+
+# import enviromental variables from .env
+load_dotenv(".env")
 
 app = FastAPI()
-app.add_middleware(DBSessionMiddleware, db_url=os.environ['DB_URL'])
+# connect FastApi app to database
+app.add_middleware(DBSessionMiddleware, db_url=os.environ["DB_URL"])
+# add routing specific api routes containg endpoints
+app.include_router(auth.router)
+app.include_router(contacts.router)
 
+
+# main site of phonebook app
 @app.get("/")
 async def root():
-    return {"message": "Hello in phone Contact app"}
-
-@app.get("/contact/")
-async def read_contact():
-    db_contacts = db.session.query(ModelContact).all()
-    return db_contacts
-
-@app.post('/contact/',response_model=SchemaContact)
-async def add_contact(contact:SchemaContact):
-    db_contact = ModelContact(
-        first_name = phone_contact.first_name,
-        last_name = phone_contact.last_name,
-        phone_number = phone_contact.phone_number,
-        email = phone_contact.email
-        )
-    db.session.add(db_contact)
-    db.session.commit()
-    return db_contact
-
-@app.delete("/contact/{contact_id}}")
-async def remove_contact(contact_id:int):
-    db_contact = db.session.query(ModelContact).filter(ModelContact.id==contact_id).first()
-    if db_contact:
-        db.session.delete(db_contact)
-        db.session.commit()
-    return db_contact
-
-@app.patch("/contact/{contact_id}")
-async def update_contact(contact_id:int,contact:SchemaContact):
-    db_contact = db.session.query(ModelContact).filter(ModelContact.id==contact_id).first()
-    if db_contact:
-        db_contact.first_name = contact.first_name
-        db_contact.last_name = contact.last_name
-        db_contact.phone_number = contact.phone_number
-        db_contact.email = contact.email
-    db.session.commit()
-    db.session.refresh(db_contact)
-    return db_contact
-    
+    """
+    Welcome site that prints all endpoints in phonebook API
+    Contains info about all endpoints
+    """
+    return {
+        "message": "Welcome in phone contact app",
+        "get /contact/": "list of contacts",
+        "get /contact/[id]": "list specific contact",
+        "post /contact/": "add contact to database",
+        "delete /contact/[id]": "remove contact from database",
+        "patch /contact/[id]": "update contact in database",
+        "post /register/": "add user credintials to database",
+    }
