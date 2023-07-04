@@ -1,0 +1,2 @@
+[pylint]
+disable=too-few-public-methods,no-name-in-module,import-error,raise-missing-from,undefined-variable,unused-argument
