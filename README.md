@@ -3,7 +3,7 @@
 ## Setup App
 1. Clone repository
 ```
-git clone
+git clone https://github.com/Fahras23/PhoneBook_RestApi.git
 ```
 2. Add .env file to home directory that contains database url
 ```
