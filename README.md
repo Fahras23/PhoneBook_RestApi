@@ -33,8 +33,8 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 7. All method available in api are in URL after starting server
-[API](http://127.0.0.1:8000/)
-[API DOCS SITE](http://127.0.0.1:8000/docs#/)
+- [API](http://127.0.0.1:8000/)
+- [API DOCS SITE](http://127.0.0.1:8000/docs#/)
 
 
 ## App features
