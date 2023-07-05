@@ -7,6 +7,7 @@ from models import Contact as ModelContact
 
 from api.auth import authenticate
 
+# creates a route to a methods in contact endpoints 
 router = APIRouter()
 
 
@@ -36,7 +37,7 @@ async def add_contact(
     """
     Add contact to database
     - phone number must be int with 9 digits
-    - email must be contain @
+    - email must have @
     - first_name and last_name cannot be null
     """
     # checks used to check value of specific parametrs in request
@@ -73,7 +74,7 @@ async def remove_contact(contact_id: int, authenticated: bool = Depends(authenti
     db_contact = (
         db.session.query(ModelContact).filter(ModelContact.id == contact_id).first()
     )
-    # check if contact exist in database
+    # check if query to database returned any value
     if db_contact:
         db.session.delete(db_contact)
         db.session.commit()
@@ -89,7 +90,7 @@ async def update_contact(
     """
     Update contact with specific id
     - phone number must be int with 9 digits
-    - email must be contain @
+    - email must have @
     - first_name and last_name cannot be null
     """
     # checks used to check value of specific arguments in request
@@ -106,7 +107,7 @@ async def update_contact(
     db_contact = (
         db.session.query(ModelContact).filter(ModelContact.id == contact_id).first()
     )
-    # overrite existing values in database with that from request
+    # overrite existing values in database with these from request
     if db_contact:
         db_contact.first_name = contact.first_name
         db_contact.last_name = contact.last_name
