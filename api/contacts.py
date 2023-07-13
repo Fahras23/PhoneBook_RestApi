@@ -1,13 +1,13 @@
 """Contains all methods for contacts"""
 from fastapi import HTTPException, Depends, APIRouter
 from fastapi_sqlalchemy import db
-
+from sqlalchemy.exc import IntegrityError
 from schemas import Contact as SchemaContact
 from models import Contact as ModelContact
 
 from api.auth import authenticate
 
-# creates a route to a methods in contact endpoints 
+# creates a route to a methods in contact endpoints
 router = APIRouter()
 
 
