@@ -45,12 +45,12 @@ async def register_user(user: SchemaCredintials):
     """Add user to database"""
     # checks variables in credintials
     if len(user.password) < 8:
-        HTTPException(
+        raise HTTPException(
             status_code=400,
             detail="Password is too short. Should has at least 8 characters",
         )
     if len(user.username) < 4:
-        HTTPException(
+        raise HTTPException(
             status_code=400,
             detail="Username is too short. Should has at least 4 characters",
         )
